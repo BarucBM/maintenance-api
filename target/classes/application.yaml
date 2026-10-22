@@ -1,7 +1,0 @@
-spring:
-  application:
-    name: maintenance-api
-  datasource:
-    url: jdbc:postgresql://localhost:5433/maintenance
-    username: postgres
-    password: postgres

@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class HealtModel {
+public class HealthModel {
 
-    public boolean up;
+    private String status;
 }
