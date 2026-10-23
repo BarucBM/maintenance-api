@@ -54,7 +54,7 @@ public class MaintenanceOrderTests {
     }
 
     @ParameterizedTest
-    @EnumSource(names = {"OPEN", "IN_PROGRESS", "CANCELLED"})
+    @EnumSource(names = {"OPEN", "IN_PROGRESS", "CANCELLED", "COMPLETED"})
     @DisplayName("uma ordem com status COMPLETED não pode mudar para nenhum outro status")
     public void assertCompletedOrderCanNotChangeToAnyOtherStatus(OrderStatus newStatus) {
         MaintenanceOrder order = new MaintenanceOrder();
