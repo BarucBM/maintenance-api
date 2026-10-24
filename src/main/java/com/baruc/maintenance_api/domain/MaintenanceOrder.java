@@ -25,7 +25,7 @@ public class MaintenanceOrder {
         if (this.statusCanChangeTo(status)) {
             this.status = status;
         } else {
-            throw new IllegalArgumentException(OrderExceptions.ERRO01.getMessage());
+            throw new OrderExcpetion("Status change from " + this.status + " to " + status + " is not allowed.");
         }
     }
 }
