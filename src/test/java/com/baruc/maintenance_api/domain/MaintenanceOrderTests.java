@@ -39,7 +39,7 @@ public class MaintenanceOrderTests {
     public void assertOpenOrderCanNotChangeToCompleted() {
         MaintenanceOrder order = new MaintenanceOrder();
         assertThatThrownBy(() -> order.setStatus(OrderStatus.COMPLETED))
-                .isInstanceOf(OrderExcpetion.class);
+                .isInstanceOf(OrderException.class);
     }
 
     @Test
@@ -66,7 +66,7 @@ public class MaintenanceOrderTests {
         MaintenanceOrder order = new MaintenanceOrder();
         assertThatNoException().isThrownBy(() -> order.setStatus(OrderStatus.IN_PROGRESS));
         assertThatThrownBy(() -> order.setStatus(OrderStatus.OPEN))
-                .isInstanceOf(OrderExcpetion.class);
+                .isInstanceOf(OrderException.class);
     }
 
     @Test
@@ -75,7 +75,7 @@ public class MaintenanceOrderTests {
         MaintenanceOrder order = new MaintenanceOrder();
         assertThatNoException().isThrownBy(() -> order.setStatus(OrderStatus.IN_PROGRESS));
         assertThatThrownBy(() -> order.setStatus(OrderStatus.OPEN))
-                .isInstanceOf(OrderExcpetion.class);
+                .isInstanceOf(OrderException.class);
         assertThat(order.getStatus()).isEqualTo(OrderStatus.IN_PROGRESS);
     }
 
@@ -87,7 +87,7 @@ public class MaintenanceOrderTests {
         assertThatNoException().isThrownBy(() -> order.setStatus(OrderStatus.IN_PROGRESS));
         assertThatNoException().isThrownBy(() -> order.setStatus(OrderStatus.COMPLETED));
         assertThatThrownBy(() -> order.setStatus(newStatus))
-                .isInstanceOf(OrderExcpetion.class);
+                .isInstanceOf(OrderException.class);
     }
 
     @ParameterizedTest
@@ -97,6 +97,6 @@ public class MaintenanceOrderTests {
         MaintenanceOrder order = new MaintenanceOrder();
         assertThatNoException().isThrownBy(() -> order.setStatus(OrderStatus.CANCELLED));
         assertThatThrownBy(() -> order.setStatus(newStatus))
-                .isInstanceOf(OrderExcpetion.class);
+                .isInstanceOf(OrderException.class);
     }
 }
