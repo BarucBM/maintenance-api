@@ -5,16 +5,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class MaintenanceOrder {
 
+    @Getter
     private Long id;
 
+    @Getter
     private OrderStatus status = OrderStatus.OPEN;
 
+    @Getter
+    @Setter
     private String description;
 
     private boolean statusCanChangeTo(OrderStatus newStatus)    {
