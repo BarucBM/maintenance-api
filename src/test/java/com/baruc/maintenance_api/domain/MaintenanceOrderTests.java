@@ -5,9 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatNoException;
+import static org.assertj.core.api.Assertions.*;
 
 public class MaintenanceOrderTests {
 
@@ -62,7 +60,7 @@ public class MaintenanceOrderTests {
 
     @Test
     @DisplayName("uma ordem com status IN_PROGRESS não pode mudar para OPEN")
-    public void assertOpenOrderCanNotChangeToCancelled() {
+    public void assertInProgressOrderCanNotChangeToOpen() {
         MaintenanceOrder order = new MaintenanceOrder();
         assertThatNoException().isThrownBy(() -> order.setStatus(OrderStatus.IN_PROGRESS));
         assertThatThrownBy(() -> order.setStatus(OrderStatus.OPEN))
