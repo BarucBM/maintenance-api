@@ -32,6 +32,10 @@ public class MaintenanceOrderService {
 
 
     private MaintenanceOrder saveOrder(MaintenanceOrder order) {
-        return maintenanceOrderRepository.save(order);
+        try {
+            return maintenanceOrderRepository.save(order);
+        } catch (RuntimeException e) {
+            throw new OrderException("Failed to save order", e);
+        }
     }
 }
