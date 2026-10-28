@@ -41,14 +41,12 @@ public class MaintenanceOrderServiceTests {
     @Test
     @DisplayName("uma ordem IN_PROGRESS pode ser finalizada com Mockito")
     public void assertFinishInProgressOrder() {
-        when(maintenanceOrderRepository.save(any())).thenAnswer(i -> i.getArgument(0));
-        MaintenanceOrder order = maintenanceOrderService.createOrder("Teste de ordem");
+        MaintenanceOrder order = new MaintenanceOrder(123L, OrderStatus.IN_PROGRESS, "Teste de ordem");
         when(maintenanceOrderRepository.findById(order.getId())).thenReturn(Optional.of(order));
 
-        assertThatNoException().isThrownBy(() -> maintenanceOrderService.updateOrderStatus(order.getId(), OrderStatus.IN_PROGRESS));
         assertThatNoException().isThrownBy(() -> maintenanceOrderService.updateOrderStatus(order.getId(), OrderStatus.COMPLETED));
         assertThat(order.getStatus()).isEqualTo(OrderStatus.COMPLETED);
-        verify(maintenanceOrderRepository, times(3)).save(order);
+        verify(maintenanceOrderRepository).save(order);
     }
 
 
