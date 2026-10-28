@@ -12,20 +12,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.never;
 
 @ExtendWith(MockitoExtension.class)
 public class MaintenanceOrderServiceTests {
 
     @InjectMocks
-    @Autowired
     private MaintenanceOrderService maintenanceOrderService;
 
     @Mock
@@ -82,12 +79,13 @@ public class MaintenanceOrderServiceTests {
     @Test
     @DisplayName("um erro ao salvar com Mockito")
     public void assertSaveException() {
-        when(maintenanceOrderRepository.save(any())).thenThrow(new RuntimeException("DB DOWN"));
+        RuntimeException dbError = new RuntimeException("DB DOWN");
+        when(maintenanceOrderRepository.save(any())).thenThrow(dbError);
 
         assertThatThrownBy(() -> maintenanceOrderService.createOrder("Teste de ordem"))
                 .isInstanceOf(OrderException.class)
                 .hasMessageContaining("Failed to save order")
-                .hasRootCauseInstanceOf(RuntimeException.class);
+                .hasCause(dbError);
 
         verify(maintenanceOrderRepository).save(any());
     }
