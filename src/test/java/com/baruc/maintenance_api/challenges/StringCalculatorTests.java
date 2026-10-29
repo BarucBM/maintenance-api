@@ -43,4 +43,9 @@ public class StringCalculatorTests {
     public void assertBreakLineAsSeparator() {
         assertThat(stringCalculator.add("1\n2,3")).isEqualTo(6);
     }
+
+    @Test
+    public void assertTwoSeparatorsIgnoreEmptySpaces() {
+        assertThat(stringCalculator.add("1,\n2")).isEqualTo(3);
+    }
 }
