@@ -38,4 +38,9 @@ public class StringCalculatorTests {
     public void assertString1_2_3_4ReturnsThree() {
         assertThat(stringCalculator.add("1,2,3,4")).isEqualTo(10);
     }
+
+    @Test
+    public void assertBreakLineAsSeparator() {
+        assertThat(stringCalculator.add("1\n2,3")).isEqualTo(6);
+    }
 }
