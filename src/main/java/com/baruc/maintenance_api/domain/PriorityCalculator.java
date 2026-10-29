@@ -3,6 +3,9 @@ package com.baruc.maintenance_api.domain;
 public class PriorityCalculator {
 
     public OrderPriority calculate(int daysOpen, boolean machineStopped){
+        if (daysOpen < 0)
+            throw new IllegalArgumentException("Days open cannot be negative");
+
         if (machineStopped)
             return OrderPriority.CRITICAL;
 
