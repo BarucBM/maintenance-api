@@ -11,6 +11,8 @@ public class StringCalculator {
             return result;
         String[] splitString = string.split("[,\n]");
         for (String s : splitString) {
+            if (s.isEmpty())
+                continue;
             result += Integer.parseInt(s);
         }
         return result;
