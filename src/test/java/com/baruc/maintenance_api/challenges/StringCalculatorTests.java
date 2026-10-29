@@ -2,7 +2,6 @@ package com.baruc.maintenance_api.challenges;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -33,5 +32,10 @@ public class StringCalculatorTests {
     @Test
     public void assertString1_2ReturnsThree() {
         assertThat(stringCalculator.add("1,2")).isEqualTo(3);
+    }
+
+    @Test
+    public void assertString1_2_3_4ReturnsThree() {
+        assertThat(stringCalculator.add("1,2,3,4")).isEqualTo(10);
     }
 }

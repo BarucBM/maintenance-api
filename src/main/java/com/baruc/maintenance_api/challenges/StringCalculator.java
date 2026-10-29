@@ -2,8 +2,6 @@ package com.baruc.maintenance_api.challenges;
 
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-
 @NoArgsConstructor
 public class StringCalculator {
 
