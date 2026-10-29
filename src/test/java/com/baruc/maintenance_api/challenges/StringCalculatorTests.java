@@ -53,4 +53,9 @@ public class StringCalculatorTests {
     public void assertPersonalizedSeparator() {
         assertThat(stringCalculator.add("//;\n1;2")).isEqualTo(3);
     }
+
+    @Test
+    public void assertPersonalizedSeparatorForNewNumbers() {
+        assertThat(stringCalculator.add("//;\n3;4")).isEqualTo(7);
+    }
 }
