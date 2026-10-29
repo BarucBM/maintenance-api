@@ -17,4 +17,10 @@ public class StringCalculatorTests {
         StringCalculator calculator = new StringCalculator();
         assertThat(calculator.add("1")).isEqualTo(1);
     }
+
+    @Test
+    public void assertString2ReturnsTwo() {
+        StringCalculator calculator = new StringCalculator();
+        assertThat(calculator.add("2")).isEqualTo(2);
+    }
 }
