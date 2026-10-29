@@ -35,7 +35,7 @@ public class StringCalculatorTests {
     }
 
     @Test
-    public void assertString1_2_3_4ReturnsThree() {
+    public void assertString1_2_3_4ReturnsTen() {
         assertThat(stringCalculator.add("1,2,3,4")).isEqualTo(10);
     }
 
