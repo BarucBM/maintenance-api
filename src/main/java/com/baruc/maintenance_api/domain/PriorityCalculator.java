@@ -6,6 +6,9 @@ public class PriorityCalculator {
         if (machineStopped)
             return OrderPriority.CRITICAL;
 
+        if (daysOpen > 7)
+            return OrderPriority.HIGH;
+
         return OrderPriority.LOW;
     }
 }
