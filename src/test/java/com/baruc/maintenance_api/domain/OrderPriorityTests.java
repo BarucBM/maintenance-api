@@ -29,4 +29,9 @@ public class OrderPriorityTests {
         assertThat(priorityCalculator.calculate(7, false)).isEqualTo(OrderPriority.MEDIUM);
     }
 
+    @Test
+    public void assertValueLowerThan4ReturnLow() {
+        assertThat(priorityCalculator.calculate(3, false)).isEqualTo(OrderPriority.LOW);
+    }
+
 }
