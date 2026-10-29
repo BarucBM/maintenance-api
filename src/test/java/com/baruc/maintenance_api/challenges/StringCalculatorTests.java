@@ -48,4 +48,9 @@ public class StringCalculatorTests {
     public void assertTwoSeparatorsIgnoreEmptySpaces() {
         assertThat(stringCalculator.add("1,\n2")).isEqualTo(3);
     }
+
+    @Test
+    public void assertPersonalizedSeparator() {
+        assertThat(stringCalculator.add("//;\n1;2")).isEqualTo(3);
+    }
 }
