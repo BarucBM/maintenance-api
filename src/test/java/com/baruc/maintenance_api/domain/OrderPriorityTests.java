@@ -19,4 +19,9 @@ public class OrderPriorityTests {
         assertThat(priorityCalculator.calculate(7, true)).isEqualTo(OrderPriority.CRITICAL);
     }
 
+    @Test
+    public void assertValueHigherThan7ReturnHigh() {
+        assertThat(priorityCalculator.calculate(8, false)).isEqualTo(OrderPriority.HIGH);
+    }
+
 }
