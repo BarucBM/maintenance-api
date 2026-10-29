@@ -9,6 +9,9 @@ public class PriorityCalculator {
         if (daysOpen > 7)
             return OrderPriority.HIGH;
 
-        return OrderPriority.MEDIUM;
+        if (daysOpen > 3)
+            return OrderPriority.MEDIUM;
+
+        return OrderPriority.LOW;
     }
 }
