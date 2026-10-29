@@ -4,5 +4,6 @@ public class PriorityCalculator {
 
     public OrderPriority calculate(int daysOpen, boolean machineStopped){
 
+
     }
 }
