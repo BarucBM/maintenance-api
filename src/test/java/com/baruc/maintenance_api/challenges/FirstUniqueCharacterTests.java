@@ -24,4 +24,9 @@ public class FirstUniqueCharacterTests {
     public void assertFirstReturnC() {
         assertThat(findString.find("cbb")).isEqualTo("c");
     }
+
+    @Test
+    public void assertFirstReturnTeste() {
+        assertThat(findString.find("teste")).isEqualTo("s");
+    }
 }
