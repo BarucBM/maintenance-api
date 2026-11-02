@@ -1,8 +1,9 @@
 package com.baruc.maintenance_api.service;
 
 
+import com.baruc.maintenance_api.domain.Exceptions.OrderNotFoundException;
 import com.baruc.maintenance_api.domain.MaintenanceOrder;
-import com.baruc.maintenance_api.domain.OrderException;
+import com.baruc.maintenance_api.domain.Exceptions.OrderException;
 import com.baruc.maintenance_api.domain.OrderStatus;
 import com.baruc.maintenance_api.repositories.MaintenanceOrderRepository;
 import com.baruc.maintenance_api.services.MaintenanceOrderService;
@@ -68,7 +69,7 @@ public class MaintenanceOrderServiceTests {
         when(maintenanceOrderRepository.findById(1L)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> maintenanceOrderService.getOrderById(1L))
-                .isInstanceOf(OrderException.class)
+                .isInstanceOf(OrderNotFoundException.class)
                 .hasMessageContaining("Order with id 1 not found.");
 
         verify(maintenanceOrderRepository, never()).save(any());

@@ -1,5 +1,6 @@
 package com.baruc.maintenance_api.domain;
 
+import com.baruc.maintenance_api.domain.Exceptions.OrderException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
