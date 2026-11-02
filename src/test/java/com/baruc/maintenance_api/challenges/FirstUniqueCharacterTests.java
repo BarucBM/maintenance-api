@@ -37,6 +37,11 @@ public class FirstUniqueCharacterTests {
     }
 
     @Test
+    public void assertEmptyStringReturns() {
+        assertThat(findString.find("")).isEqualTo("");
+    }
+
+    @Test
     public void assertNullThrowsIllegalArgumentException() {
         assertThatThrownBy(() ->findString.find(null))
                 .isInstanceOf(IllegalArgumentException.class)
