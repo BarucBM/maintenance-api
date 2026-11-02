@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class FirstUniqueCharacterTests {
 
@@ -33,5 +34,12 @@ public class FirstUniqueCharacterTests {
     @Test
     public void assertFirstReturnAABB() {
         assertThat(findString.find("AABB")).isEqualTo("");
+    }
+
+    @Test
+    public void assertNullThrowsIllegalArgumentException() {
+        assertThatThrownBy(() ->findString.find(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Input string cannot be null");;
     }
 }
