@@ -1,5 +1,6 @@
 package com.baruc.maintenance_api.services;
 
+import com.baruc.maintenance_api.domain.Exceptions.OrderNotFoundException;
 import com.baruc.maintenance_api.domain.MaintenanceOrder;
 import com.baruc.maintenance_api.domain.Exceptions.OrderException;
 import com.baruc.maintenance_api.domain.OrderStatus;
@@ -21,7 +22,7 @@ public class MaintenanceOrderService {
 
     public MaintenanceOrder getOrderById(Long id) {
         return maintenanceOrderRepository.findById(id)
-                .orElseThrow(() -> new OrderException("Order with id " + id + " not found."));
+                .orElseThrow(() -> new OrderNotFoundException("Order with id " + id + " not found."));
     }
 
     public MaintenanceOrder updateOrderStatus(Long id, OrderStatus newStatus) {
