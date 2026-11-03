@@ -1,5 +1,6 @@
 package com.baruc.maintenance_api.services;
 
+import com.baruc.maintenance_api.domain.exceptions.InvalidStatusTransitionException;
 import com.baruc.maintenance_api.domain.exceptions.OrderNotFoundException;
 import com.baruc.maintenance_api.domain.MaintenanceOrder;
 import com.baruc.maintenance_api.domain.exceptions.OrderException;
