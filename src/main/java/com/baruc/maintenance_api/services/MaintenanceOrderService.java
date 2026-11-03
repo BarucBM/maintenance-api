@@ -1,8 +1,8 @@
 package com.baruc.maintenance_api.services;
 
-import com.baruc.maintenance_api.domain.Exceptions.OrderNotFoundException;
+import com.baruc.maintenance_api.domain.exceptions.OrderNotFoundException;
 import com.baruc.maintenance_api.domain.MaintenanceOrder;
-import com.baruc.maintenance_api.domain.Exceptions.OrderException;
+import com.baruc.maintenance_api.domain.exceptions.OrderException;
 import com.baruc.maintenance_api.domain.OrderStatus;
 import com.baruc.maintenance_api.repositories.MaintenanceOrderRepository;
 import lombok.AllArgsConstructor;

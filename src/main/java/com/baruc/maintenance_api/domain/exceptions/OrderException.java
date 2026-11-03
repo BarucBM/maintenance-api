@@ -1,4 +1,4 @@
-package com.baruc.maintenance_api.domain.Exceptions;
+package com.baruc.maintenance_api.domain.exceptions;
 
 public class OrderException extends RuntimeException{
 

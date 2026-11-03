@@ -1,6 +1,6 @@
 package com.baruc.maintenance_api.domain;
 
-import com.baruc.maintenance_api.domain.Exceptions.OrderException;
+import com.baruc.maintenance_api.domain.exceptions.OrderException;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
