@@ -1,6 +1,7 @@
 package com.baruc.maintenance_api.service;
 
 
+import com.baruc.maintenance_api.domain.exceptions.InvalidStatusTransitionException;
 import com.baruc.maintenance_api.domain.exceptions.OrderNotFoundException;
 import com.baruc.maintenance_api.domain.MaintenanceOrder;
 import com.baruc.maintenance_api.domain.exceptions.OrderException;
@@ -58,7 +59,7 @@ public class MaintenanceOrderServiceTests {
         when(maintenanceOrderRepository.findById(order.getId())).thenReturn(Optional.of(order));
 
         assertThatThrownBy(() ->  maintenanceOrderService.updateOrderStatus(order.getId(), OrderStatus.COMPLETED))
-                .isInstanceOf(OrderException.class)
+                .isInstanceOf(InvalidStatusTransitionException.class)
                 .hasMessageContaining("Status change from");
         verify(maintenanceOrderRepository, never()).save(order);
     }
