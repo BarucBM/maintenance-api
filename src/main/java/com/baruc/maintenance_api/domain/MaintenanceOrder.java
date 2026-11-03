@@ -1,5 +1,6 @@
 package com.baruc.maintenance_api.domain;
 
+import com.baruc.maintenance_api.domain.exceptions.InvalidStatusTransitionException;
 import com.baruc.maintenance_api.domain.exceptions.OrderException;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,7 +36,7 @@ public class MaintenanceOrder {
         if (this.statusCanChangeTo(status)) {
             this.status = status;
         } else {
-            throw new OrderException("Status change from " + this.status + " to " + status + " is not allowed.");
+            throw new InvalidStatusTransitionException("Status change from " + this.status + " to " + status + " is not allowed.");
         }
     }
 }
