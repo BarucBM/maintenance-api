@@ -6,6 +6,7 @@ import com.baruc.maintenance_api.domain.exceptions.OrderNotFoundException;
 import com.baruc.maintenance_api.domain.MaintenanceOrder;
 import com.baruc.maintenance_api.domain.exceptions.OrderException;
 import com.baruc.maintenance_api.domain.OrderStatus;
+import com.baruc.maintenance_api.domain.exceptions.OrderPersistenceException;
 import com.baruc.maintenance_api.repositories.MaintenanceOrderRepository;
 import com.baruc.maintenance_api.services.MaintenanceOrderService;
 import org.junit.jupiter.api.DisplayName;
@@ -83,7 +84,7 @@ public class MaintenanceOrderServiceTests {
         when(maintenanceOrderRepository.save(any())).thenThrow(dbError);
 
         assertThatThrownBy(() -> maintenanceOrderService.createOrder("Teste de ordem"))
-                .isInstanceOf(OrderException.class)
+                .isInstanceOf(OrderPersistenceException.class)
                 .hasMessageContaining("Failed to save order")
                 .hasCause(dbError);
 
