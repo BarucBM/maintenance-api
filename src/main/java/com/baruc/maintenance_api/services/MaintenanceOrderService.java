@@ -5,6 +5,7 @@ import com.baruc.maintenance_api.domain.exceptions.OrderNotFoundException;
 import com.baruc.maintenance_api.domain.MaintenanceOrder;
 import com.baruc.maintenance_api.domain.exceptions.OrderException;
 import com.baruc.maintenance_api.domain.OrderStatus;
+import com.baruc.maintenance_api.domain.exceptions.OrderPersistenceException;
 import com.baruc.maintenance_api.repositories.MaintenanceOrderRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -37,7 +38,7 @@ public class MaintenanceOrderService {
         try {
             return maintenanceOrderRepository.save(order);
         } catch (RuntimeException e) {
-            throw new OrderException("Failed to save order", e);
+            throw new OrderPersistenceException("Failed to save order", e);
         }
     }
 }
