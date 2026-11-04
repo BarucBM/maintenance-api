@@ -3,6 +3,7 @@ package com.baruc.maintenance_api.controllers;
 import com.baruc.maintenance_api.controller.OrderController;
 import com.baruc.maintenance_api.domain.MaintenanceOrder;
 import com.baruc.maintenance_api.domain.OrderStatus;
+import com.baruc.maintenance_api.domain.exceptions.OrderNotFoundException;
 import com.baruc.maintenance_api.services.MaintenanceOrderService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -58,5 +59,17 @@ public class OrderControllerTests {
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.status").value("OPEN"))
                 .andExpect(jsonPath("$.description").value("Trocar filtro"));
+    }
+
+    @Test
+    @DisplayName("GET /orders/99 retorna 404 quando o order não existe")
+    void assertGetOrderByIdReturns404() throws Exception {
+        when(maintenanceOrderService.getOrderById(99L))
+                .thenThrow(new OrderNotFoundException("Order with id 99 not found."));
+
+        mockMvc.perform(get("/orders/99"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.status").value(404))
+                .andExpect(jsonPath("$.detail").value("Order with id 99 not found."));
     }
 }
