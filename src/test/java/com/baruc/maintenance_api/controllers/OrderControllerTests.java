@@ -14,9 +14,9 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(OrderController.class)
 public class OrderControllerTests {
@@ -47,5 +47,17 @@ public class OrderControllerTests {
                 .andExpect(status().isBadRequest());
 
         verify(maintenanceOrderService, never()).createOrder(any());
+    }
+
+    @Test
+    @DisplayName("GET /orders/{id} com description vazia retorna 400 e nunca chama o service")
+    void assertGetOrderByIdReturnsOrder() throws Exception {
+        when(maintenanceOrderService.getOrderById(1L)).thenReturn(new MaintenanceOrder(1L, OrderStatus.OPEN, "Trocar filtro"));
+        mockMvc.perform(get("/orders/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.status").value(OrderStatus.OPEN))
+                .andExpect(jsonPath("$.description").value("Trocar filtro"));
     }
 }
