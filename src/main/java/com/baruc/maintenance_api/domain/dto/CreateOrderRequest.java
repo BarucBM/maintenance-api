@@ -1,3 +1,5 @@
 package com.baruc.maintenance_api.domain.dto;
 
-public record CreateOrderRequest(String description) {}
+import jakarta.validation.constraints.NotBlank;
+
+public record CreateOrderRequest(@NotBlank String description) {}
