@@ -1,11 +1,17 @@
 package com.baruc.maintenance_api.controller;
 
 import com.baruc.maintenance_api.domain.MaintenanceOrder;
+import com.baruc.maintenance_api.domain.dto.CreateOrderRequest;
 import com.baruc.maintenance_api.services.MaintenanceOrderService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 public class OrderController {
@@ -14,7 +20,13 @@ public class OrderController {
     private MaintenanceOrderService orderService;
 
     @PostMapping("/orders")
-    public MaintenanceOrder createOrder(@RequestBody String description) {
-        return orderService.createOrder(description);
+    public ResponseEntity<MaintenanceOrder> createOrder(@RequestBody @Valid CreateOrderRequest createOrderRequest) {
+        MaintenanceOrder order = orderService.createOrder(createOrderRequest.description());
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(order.getId())
+                .toUri();
+
+        return ResponseEntity.created(location).body(order);
     }
 }
