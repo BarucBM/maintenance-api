@@ -13,7 +13,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -36,5 +36,16 @@ public class OrderControllerTests {
                         .content("{\"description\":\"Trocar filtro\"}"))
                 .andExpect(status().isCreated())
                 .andExpect(header().string("Location", "http://localhost/orders/1"));
+    }
+
+    @Test
+    @DisplayName("POST /orders com description vazia retorna 400 e nunca chama o service")
+    void assertEmptyDescriptionNeverCallsService() throws Exception {
+        mockMvc.perform(post("/orders")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"description\":\"\"}"))
+                .andExpect(status().isBadRequest());
+
+        verify(maintenanceOrderService, never()).createOrder(any());
     }
 }
