@@ -50,14 +50,13 @@ public class OrderControllerTests {
     }
 
     @Test
-    @DisplayName("GET /orders/{id} com description vazia retorna 400 e nunca chama o service")
+    @DisplayName("GET /orders/{id} retorna 200 e o order correto")
     void assertGetOrderByIdReturnsOrder() throws Exception {
         when(maintenanceOrderService.getOrderById(1L)).thenReturn(new MaintenanceOrder(1L, OrderStatus.OPEN, "Trocar filtro"));
-        mockMvc.perform(get("/orders/1")
-                        .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/orders/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.status").value(OrderStatus.OPEN))
+                .andExpect(jsonPath("$.status").value("OPEN"))
                 .andExpect(jsonPath("$.description").value("Trocar filtro"));
     }
 }
