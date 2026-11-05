@@ -1,11 +1,12 @@
 package com.baruc.maintenance_api.domain;
 
 import com.baruc.maintenance_api.domain.exceptions.InvalidStatusTransitionException;
-import com.baruc.maintenance_api.domain.exceptions.OrderException;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.EnumType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class MaintenanceOrder {
     private Long id;
 
     @Getter
+    @Enumerated(EnumType.STRING)
     private OrderStatus status = OrderStatus.OPEN;
 
     @Getter
