@@ -49,4 +49,9 @@ public class ValidPalindromeTests {
     public void assertStringWithRandomNumbersReturnFalse() {
         assertThat(validPalindrome.valid("ana9")).isEqualTo(false);
     }
+
+    @Test
+    public void assertStringWithPunctuationReturnTrue() {
+        assertThat(validPalindrome.valid(".,")).isEqualTo(true);
+    }
 }
