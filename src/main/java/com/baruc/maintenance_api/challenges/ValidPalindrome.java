@@ -3,10 +3,17 @@ package com.baruc.maintenance_api.challenges;
 public class ValidPalindrome {
 
     public boolean valid(String s) {
-        if (s.isBlank()){
-            return true;
+        int left = 0;
+        int right = s.length() - 1;
+
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
         }
 
-        return false;
+        return true;
     }
 }
