@@ -41,7 +41,6 @@ public class ValidPalindromeTests {
     }
 
     @Test
-    @Disabled("aguarda toLowerCase e skip")
     public void assertStringWithNonDigitsReturnTrue() {
         assertThat(validPalindrome.valid("A man, a plan, a canal: Panama")).isEqualTo(true);
     }
