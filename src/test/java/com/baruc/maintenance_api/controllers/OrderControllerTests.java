@@ -3,6 +3,7 @@ package com.baruc.maintenance_api.controllers;
 import com.baruc.maintenance_api.controller.OrderController;
 import com.baruc.maintenance_api.domain.MaintenanceOrder;
 import com.baruc.maintenance_api.domain.OrderStatus;
+import com.baruc.maintenance_api.domain.exceptions.InvalidStatusTransitionException;
 import com.baruc.maintenance_api.domain.exceptions.OrderNotFoundException;
 import com.baruc.maintenance_api.services.MaintenanceOrderService;
 import org.junit.jupiter.api.DisplayName;
@@ -83,5 +84,17 @@ public class OrderControllerTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.status").value("IN_PROGRESS"));
+    }
+
+    @Test
+    @DisplayName("Patch /orders/{id} para status invalido retorna 422")
+    void assertPatchOrderWithInvalidTransitionReturnsException() throws Exception {
+        when(maintenanceOrderService.updateOrderStatus(1L, OrderStatus.COMPLETED))
+                .thenThrow(new InvalidStatusTransitionException("Status change from OPEN to COMPLETED is not allowed."));
+
+        mockMvc.perform(patch("/orders/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"status\":\"COMPLETED\"}"))
+                .andExpect(status().isUnprocessableContent());
     }
 }
