@@ -95,6 +95,8 @@ public class OrderControllerTests {
         mockMvc.perform(patch("/orders/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"status\":\"COMPLETED\"}"))
-                .andExpect(status().isUnprocessableContent());
+                .andExpect(status().isUnprocessableContent())
+                .andExpect(jsonPath("$.status").value(422))
+                .andExpect(jsonPath("$.detail").value("Status change from OPEN to COMPLETED is not allowed."));
     }
 }
