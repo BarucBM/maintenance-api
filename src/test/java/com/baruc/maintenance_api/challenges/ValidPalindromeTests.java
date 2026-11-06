@@ -31,6 +31,11 @@ public class ValidPalindromeTests {
     }
 
     @Test
+    public void assertLowerCaseValidation() {
+        assertThat(validPalindrome.valid("Radar")).isEqualTo(true);
+    }
+
+    @Test
     @Disabled("aguarda toLowerCase e skip")
     public void assertStringWithNonDigitsReturnTrue() {
         assertThat(validPalindrome.valid("A man, a plan, a canal: Panama")).isEqualTo(true);
