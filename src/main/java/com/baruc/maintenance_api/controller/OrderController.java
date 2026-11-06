@@ -2,6 +2,7 @@ package com.baruc.maintenance_api.controller;
 
 import com.baruc.maintenance_api.domain.MaintenanceOrder;
 import com.baruc.maintenance_api.domain.dto.CreateOrderRequest;
+import com.baruc.maintenance_api.domain.dto.UpdateOrderStatusRequest;
 import com.baruc.maintenance_api.services.MaintenanceOrderService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,16 @@ public class OrderController {
     @GetMapping("/orders/{id}")
     public ResponseEntity<MaintenanceOrder> getOrder(@PathVariable Long id) {
         MaintenanceOrder order = orderService.getOrderById(id);
+
+        return ResponseEntity.ok(order);
+    }
+
+    @PatchMapping("/orders/{id}")
+    public ResponseEntity<MaintenanceOrder> updateOrderStatus(
+            @PathVariable Long id,
+            @RequestBody @Valid UpdateOrderStatusRequest updateOrderStatusRequest
+    ) {
+        MaintenanceOrder order = orderService.updateOrderStatus(id, updateOrderStatusRequest.status());
 
         return ResponseEntity.ok(order);
     }
