@@ -44,4 +44,9 @@ public class ValidPalindromeTests {
     public void assertStringWithNonDigitsReturnTrue() {
         assertThat(validPalindrome.valid("A man, a plan, a canal: Panama")).isEqualTo(true);
     }
+
+    @Test
+    public void assertStringWithRandomNumbersReturnFalse() {
+        assertThat(validPalindrome.valid("ana9")).isEqualTo(false);
+    }
 }
