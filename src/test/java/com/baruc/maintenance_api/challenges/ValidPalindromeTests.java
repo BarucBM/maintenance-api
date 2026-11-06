@@ -23,4 +23,9 @@ public class ValidPalindromeTests {
     public void assertStringTesteReturnFalse() {
         assertThat(validPalindrome.valid("teste")).isEqualTo(false);
     }
+
+    @Test
+    public void assertStringAnaReturnTrue() {
+        assertThat(validPalindrome.valid("ana")).isEqualTo(true);
+    }
 }
