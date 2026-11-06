@@ -15,8 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(OrderController.class)
@@ -71,5 +70,18 @@ public class OrderControllerTests {
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.status").value(404))
                 .andExpect(jsonPath("$.detail").value("Order with id 99 not found."));
+    }
+
+    @Test
+    @DisplayName("Patch /orders/{id} para status válido retorna 200")
+    void assertPatchOrderReturnsOk() throws Exception {
+        when(maintenanceOrderService.updateOrderStatus(1L, OrderStatus.IN_PROGRESS)).thenReturn(new MaintenanceOrder(1L, OrderStatus.IN_PROGRESS, ""));
+
+        mockMvc.perform(patch("/orders/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"status\":\"IN_PROGRESS\"}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.status").value("IN_PROGRESS"));
     }
 }
