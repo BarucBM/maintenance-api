@@ -36,6 +36,11 @@ public class ValidPalindromeTests {
     }
 
     @Test
+    public void assertSkipValidation() {
+        assertThat(validPalindrome.valid("o lobo, ama o bolo.")).isEqualTo(true);
+    }
+
+    @Test
     @Disabled("aguarda toLowerCase e skip")
     public void assertStringWithNonDigitsReturnTrue() {
         assertThat(validPalindrome.valid("A man, a plan, a canal: Panama")).isEqualTo(true);
