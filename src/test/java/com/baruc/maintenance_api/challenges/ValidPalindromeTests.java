@@ -28,4 +28,9 @@ public class ValidPalindromeTests {
     public void assertStringAnaReturnTrue() {
         assertThat(validPalindrome.valid("ana")).isEqualTo(true);
     }
+
+    @Test
+    public void assertStringWithNonDigitsReturnTrue() {
+        assertThat(validPalindrome.valid("A man, a plan, a canal: Panama")).isEqualTo(true);
+    }
 }
