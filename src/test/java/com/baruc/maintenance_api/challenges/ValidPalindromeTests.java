@@ -18,4 +18,9 @@ public class ValidPalindromeTests {
     public void assertEmptyStringReturnTrue() {
         assertThat(validPalindrome.valid(" ")).isEqualTo(true);
     }
+
+    @Test
+    public void assertStringTesteReturnFalse() {
+        assertThat(validPalindrome.valid("teste")).isEqualTo(false);
+    }
 }
