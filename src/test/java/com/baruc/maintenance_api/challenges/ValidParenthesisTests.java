@@ -28,4 +28,9 @@ public class ValidParenthesisTests {
     public void assertNotClosedReturnsFalse() {
         assertThat(validParenthesis.verify("()(")).isFalse();
     }
+
+    @Test
+    public void assertDiferentClosersReturnsFalse() {
+        assertThat(validParenthesis.verify("((]]")).isFalse();
+    }
 }
