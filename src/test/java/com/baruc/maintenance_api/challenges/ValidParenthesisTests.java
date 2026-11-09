@@ -33,4 +33,9 @@ public class ValidParenthesisTests {
     public void assertDiferentClosersReturnsFalse() {
         assertThat(validParenthesis.verify("((]]")).isFalse();
     }
+
+    @Test
+    public void assertRandomClosersReturnsFalse() {
+        assertThat(validParenthesis.verify("([)]")).isFalse();
+    }
 }
