@@ -18,4 +18,9 @@ public class ValidParenthesisTests {
     public void assertBasicValidParenthesis() {
         assertThat(validParenthesis.verify("()")).isTrue();
     }
+
+    @Test
+    public void assertDoubleOpenerReturnsFalse() {
+        assertThat(validParenthesis.verify("((")).isFalse();
+    }
 }
