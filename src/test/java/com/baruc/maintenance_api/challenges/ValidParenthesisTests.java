@@ -43,4 +43,9 @@ public class ValidParenthesisTests {
     public void assertThirdParenthesisTypeReturnsTrue() {
         assertThat(validParenthesis.verify("{}")).isTrue();
     }
+
+    @Test
+    public void assertOnlyCloserReturnsFalse() {
+        assertThat(validParenthesis.verify(")")).isTrue();
+    }
 }
