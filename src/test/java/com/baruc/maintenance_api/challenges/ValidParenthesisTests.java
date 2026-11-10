@@ -46,6 +46,6 @@ public class ValidParenthesisTests {
 
     @Test
     public void assertOnlyCloserReturnsFalse() {
-        assertThat(validParenthesis.verify(")")).isTrue();
+        assertThat(validParenthesis.verify(")")).isFalse();
     }
 }

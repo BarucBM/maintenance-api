@@ -3,6 +3,7 @@ package com.baruc.maintenance_api.challenges;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Map;
+import java.util.Objects;
 
 public class ValidParenthesis {
 
@@ -14,7 +15,10 @@ public class ValidParenthesis {
                 stack.push(c);
                 continue;
             }
-
+            var last = stack.peek();
+            if (Objects.isNull(last)){
+                return false;
+            }
             if (map.get(stack.pop()) != c) {
                 return false;
             }
