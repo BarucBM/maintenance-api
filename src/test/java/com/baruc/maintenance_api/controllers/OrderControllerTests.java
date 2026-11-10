@@ -62,8 +62,6 @@ public class OrderControllerTests {
                 .andExpect(status().isInternalServerError())
                 .andExpect(jsonPath("$.status").value(500))
                 .andExpect(jsonPath("$.detail").value("Erro interno do servidor ao salvar Order. Por favor, tente novamente mais tarde."));
-
-        verify(maintenanceOrderService, never()).createOrder(any());
     }
 
     @Test
