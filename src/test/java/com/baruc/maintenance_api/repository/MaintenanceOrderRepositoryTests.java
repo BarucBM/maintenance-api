@@ -45,4 +45,20 @@ public class MaintenanceOrderRepositoryTests {
         assertThat(retrievedOrder.getDescription()).isEqualTo(order.getDescription());
         assertThat(retrievedOrder.getStatus()).isEqualTo(OrderStatus.OPEN);
     }
+
+    @Test
+    public void assertSavedOrderReturnsWithSameChangedStatusAndDescription() {
+        MaintenanceOrder order = new MaintenanceOrder();
+        order.setDescription("Description of the maintenance order");
+        order.setStatus(OrderStatus.IN_PROGRESS);
+
+        maintenanceOrderRepository.save(order);
+
+        entityManager.flush();
+        entityManager.clear();
+
+        MaintenanceOrder retrievedOrder = maintenanceOrderRepository.findById(order.getId()).orElseThrow();
+        assertThat(retrievedOrder.getDescription()).isEqualTo(order.getDescription());
+        assertThat(retrievedOrder.getStatus()).isEqualTo(OrderStatus.IN_PROGRESS);
+    }
 }
