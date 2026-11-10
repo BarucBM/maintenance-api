@@ -20,4 +20,9 @@ public class ApiExceptionHandler {
     public ProblemDetail handleInvalidTransition(InvalidStatusTransitionException ex) {
         return ProblemDetail.forStatusAndDetail(HttpStatus.UNPROCESSABLE_CONTENT, ex.getMessage());
     }
+
+    @ExceptionHandler(OrderPersistenceException.class)
+    public ProblemDetail handlePersistenceProblem(OrderPersistenceException ex) {
+        return ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, "Erro interno do servidor ao salvar Order. Por favor, tente novamente mais tarde.");
+    }
 }
