@@ -5,6 +5,7 @@ import com.baruc.maintenance_api.domain.MaintenanceOrder;
 import com.baruc.maintenance_api.domain.OrderStatus;
 import com.baruc.maintenance_api.domain.exceptions.InvalidStatusTransitionException;
 import com.baruc.maintenance_api.domain.exceptions.OrderNotFoundException;
+import com.baruc.maintenance_api.domain.exceptions.OrderPersistenceException;
 import com.baruc.maintenance_api.services.MaintenanceOrderService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -46,6 +47,21 @@ public class OrderControllerTests {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"description\":\"\"}"))
                 .andExpect(status().isBadRequest());
+
+        verify(maintenanceOrderService, never()).createOrder(any());
+    }
+
+    @Test
+    @DisplayName("POST /orders com erro de persistencia retorna 500 com mensagem fixa")
+    void assertPersistenceExceptionHideSensitiveData() throws Exception {
+        when(maintenanceOrderService.createOrder("Teste"))
+                .thenThrow(new OrderPersistenceException("Failed to save order"));
+        mockMvc.perform(post("/orders")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"description\":\"Teste\"}"))
+                .andExpect(status().isInternalServerError())
+                .andExpect(jsonPath("$.status").value(500))
+                .andExpect(jsonPath("$.detail").value("Erro interno do servidor ao salvar Order. Por favor, tente novamente mais tarde."));
 
         verify(maintenanceOrderService, never()).createOrder(any());
     }
