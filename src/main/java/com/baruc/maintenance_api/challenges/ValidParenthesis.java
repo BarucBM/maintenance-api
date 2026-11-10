@@ -8,6 +8,8 @@ import java.util.Objects;
 public class ValidParenthesis {
 
     public boolean verify(String s) {
+        if (s.isBlank())
+            return false;
         Deque<Character> stack = new ArrayDeque<>();
         Map<Character, Character> map = Map.of('(', ')', '{', '}', '[', ']');
         for (char c : s.toCharArray()) {
