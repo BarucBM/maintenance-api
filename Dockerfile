@@ -7,4 +7,6 @@ RUN ./mvnw package -DskipTests
 
 FROM eclipse-temurin:21-jre
 COPY --from=build /target/maintenance-api-*.jar arquivo.jar
+RUN groupadd --system web && useradd --system --gid web web
+USER web
 ENTRYPOINT ["java", "-jar", "arquivo.jar"]
