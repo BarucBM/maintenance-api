@@ -48,4 +48,12 @@ public class MinStackTests {
         assertThat(minStack.getMin()).isEqualTo(89);
     }
 
+    @Test
+    public void assertGetMinWithDoubledNumbersAndPop() {
+        minStack.push(35);
+        minStack.push(35);
+        minStack.pop();
+        assertThat(minStack.getMin()).isEqualTo(35);
+    }
+
 }
