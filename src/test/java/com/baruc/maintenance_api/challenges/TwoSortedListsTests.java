@@ -15,7 +15,7 @@ public class TwoSortedListsTests {
     }
 
     @Test
-    public void assertInputNullReturnsNull() {
+    public void assertBothInputNullReturnsNull() {
         assertThat(twoSortedLists.mergeSortedArrays(null, null)).isEqualTo(null);
     }
 }
