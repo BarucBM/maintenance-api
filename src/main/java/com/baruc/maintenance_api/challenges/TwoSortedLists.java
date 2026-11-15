@@ -8,6 +8,9 @@ public class TwoSortedLists {
         if (ObjectUtils.isEmpty(listNode1) && ObjectUtils.isEmpty(listNode2)) {
             return null;
         }
+        if (ObjectUtils.isEmpty(listNode2)){
+            return listNode1;
+        }
         ListNode result = new ListNode();
         return result;
     }
