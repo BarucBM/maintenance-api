@@ -3,7 +3,6 @@ package com.baruc.maintenance_api.challenges;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 public class ListNode {
     int val;
     @Setter

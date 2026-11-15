@@ -1,45 +1,28 @@
 package com.baruc.maintenance_api.challenges;
 
-import org.springframework.util.ObjectUtils;
-
 public class TwoSortedLists {
 
     public ListNode mergeSortedArrays(ListNode listNode1, ListNode listNode2) {
-        if (ObjectUtils.isEmpty(listNode2)){
-            return listNode1;
-        }
-        if (ObjectUtils.isEmpty(listNode1)){
-            return listNode2;
-        }
-        ListNode result = new ListNode();
-        ListNode resultHead = new ListNode();
-
-        if (listNode1.val > listNode2.val){
-            resultHead = listNode2;
-            listNode2 = listNode2.next;
-        } else {
-            resultHead = listNode1;
-            listNode1 = listNode1.next;
-        }
-        result = resultHead;
+        ListNode dummyHead = new ListNode(-1);
+        ListNode result = dummyHead;
         while (true){
-            if (ObjectUtils.isEmpty(listNode1)){
+            if (listNode1 == null){
                 result.setNext(listNode2);
                 break;
             }
-            if (ObjectUtils.isEmpty(listNode2)){
+            if (listNode2 == null){
                 result.setNext(listNode1);
                 break;
             }
-            if (listNode1.val < listNode2.val){
-                result.setNext(listNode1);
-                listNode1 = listNode1.next;
-            } else {
+            if (listNode1.val > listNode2.val){
                 result.setNext(listNode2);
                 listNode2 = listNode2.next;
+            } else {
+                result.setNext(listNode1);
+                listNode1 = listNode1.next;
             }
             result = result.next;
         }
-        return resultHead;
+        return dummyHead.next;
     }
 }
