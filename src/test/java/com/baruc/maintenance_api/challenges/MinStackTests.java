@@ -33,5 +33,12 @@ public class MinStackTests {
         assertThat(minStack.getMin()).isEqualTo(3);
     }
 
+    @Test
+    public void assertGetMinWithDifferentValues() {
+        minStack.push(89);
+        minStack.push(35);
+        assertThat(minStack.getMin()).isEqualTo(35);
+    }
+
 
 }
