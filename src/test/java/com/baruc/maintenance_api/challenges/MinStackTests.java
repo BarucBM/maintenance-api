@@ -19,4 +19,10 @@ public class MinStackTests {
         minStack.push(5);
         assertThat(minStack.top()).isEqualTo(5);
     }
+
+    @Test
+    public void assertGetMin() {
+        minStack.push(5);
+        assertThat(minStack.getMin()).isEqualTo(5);
+    }
 }
