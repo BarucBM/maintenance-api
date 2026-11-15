@@ -68,6 +68,22 @@ public class TwoSortedListsTests {
         assertThat(expected).containsExactly(1,2,3,4);
     }
 
+    @Test
+    public void assertDifferentSizedLists() {
+        ListNode listNode1 = new ListNode(5);
+
+        ListNode listNode2 = new ListNode(1);
+        ListNode listNode3 = new ListNode(2);
+        ListNode listNode4 = new ListNode(3);
+        ListNode listNode5 = new ListNode(4);
+        listNode2.setNext(listNode3);
+        listNode3.setNext(listNode4);
+        listNode4.setNext(listNode5);
+
+        List <Integer> expected = convertToList(twoSortedLists.mergeSortedArrays(listNode2, listNode1));
+        assertThat(expected).containsExactly(1,2,3,4,5);
+    }
+
     private List<Integer> convertToList(ListNode node) {
         List<Integer> result = new ArrayList<>();
         while (node != null) {
