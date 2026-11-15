@@ -6,9 +6,13 @@ import java.util.Deque;
 public class MinStack {
 
     private Deque<Integer> stack = new ArrayDeque<>();
+    private Integer minValue = null;
 
     public void push (int val) {
         stack.push(val);
+        if (minValue == null || val < minValue) {
+            minValue = val;
+        }
     }
 
     public void pop() {
@@ -20,8 +24,6 @@ public class MinStack {
     }
 
     public int getMin() {
-        if (stack.size() > 1)
-            return 3;
-        return 5;
+        return minValue;
     }
 }
