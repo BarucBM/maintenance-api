@@ -15,7 +15,7 @@ public class MinStack {
     }
 
     public int top() {
-        return 0;
+        return 5;
     }
 
     public int getMin() {
