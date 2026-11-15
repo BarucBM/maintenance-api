@@ -32,6 +32,15 @@ public class TwoSortedListsTests {
     }
 
     @Test
+    public void assertOneInputNullReturnsOtherInverted() {
+        ListNode listNode1 = new ListNode(5);
+        ListNode listNode2 = new ListNode(6);
+        listNode1.setNext(listNode2);
+        List <Integer> expected = convertToList(twoSortedLists.mergeSortedArrays(null, listNode1));
+        assertThat(expected).containsExactly(5,6);
+    }
+
+    @Test
     public void assertBothInputsReturnsMergedList() {
         ListNode listNode1 = new ListNode(1);
         ListNode listNode2 = new ListNode(3);
