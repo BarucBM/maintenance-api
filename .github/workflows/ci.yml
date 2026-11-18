@@ -1,12 +1,31 @@
+name: CI
 on: push
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      DB_URL: jdbc:postgresql://localhost:5433/maintenance
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+    services:
+      postgres:
+        image: postgres:15.3
+        env:
+          POSTGRES_DB: maintenance
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5433:5432
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
+          distribution: temurin
           java-version: '21'
-          cache: 'maven'
-      - run: mvn test
+          cache: maven
+      - run: ./mvnw test
