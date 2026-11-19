@@ -29,3 +29,8 @@ jobs:
           java-version: '21'
           cache: maven
       - run: ./mvnw test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: jacoco-report
+          path: target/site/jacoco
